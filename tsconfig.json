@@ -8,5 +8,9 @@
     "forceConsistentCasingInFileNames": true, /* Disallow inconsistently-cased references to the same file. */
     "declaration": true,
     "outDir": "./dist",
-  }
+  },
+  "include": [
+    "src",
+    "test",
+  ]
 }

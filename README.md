@@ -659,16 +659,16 @@ combination. Should be called when a user requests prices by providing the crypt
 
 | Available Statuses              |
 |:--------------------------------|
-| `OrderStatus.PENDING_PAYMENT`  |
-| `OrderStatus.WAITING_PAYMENT`  |
-| `OrderStatus.PAYMENT_RECEIVED` |
-| `OrderStatus.IN_PROGRESS`      |
-| `OrderStatus.COIN_TRANSFERRED` |
-| `OrderStatus.CANCELLED`        |
-| `OrderStatus.DECLINED`         |
-| `OrderStatus.EXPIRED`          |
-| `OrderStatus.COMPLETE`         |
-| `OrderStatus.REFUNDED`         |
+| pendingPayment`  |
+| `waitingPayment`  |
+| `paymentReceived` |
+| `inProgress`      |
+| `coinTransferred` |
+| `cancelled`        |
+| `declined`         |
+| `expired`          |
+| `complete`         |
+| `refunded`         |
 
 **Result Example**
 

@@ -141,8 +141,8 @@ export default class Banxa {
         startDate: string,
         endDate: string,
         statuses?: string[],
-        perPage: string | number = 0,
-        page: string | number = 0,
+        perPage: string | number = 100,
+        page: string | number = 1,
         accountReference?: string
     ) {
         return new GetOrders(this.httpClient)

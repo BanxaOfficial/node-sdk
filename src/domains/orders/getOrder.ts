@@ -3,7 +3,7 @@ import HttpClient from "../../client/httpClient";
 
 export class GetOrder extends Domain {
 
-    private path: string = 'api/order';
+    private path: string = 'api/orders';
     private _orderId: string = '';
 
     constructor(client: HttpClient) {

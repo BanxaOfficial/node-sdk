@@ -1,4 +1,4 @@
-import Banxa from "../../src/banxa";
+import Banxa from "../../src";
 
 import {assert} from "chai";
 import nock from "nock";
