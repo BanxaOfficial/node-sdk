@@ -72,8 +72,8 @@ export default class Banxa {
 
     public getSellPaymentMethods(coinCode: string, fiatCode: string) {
         return new GetPaymentMethods(this.httpClient)
-            .setTarget(coinCode)
-            .setSource(fiatCode)
+            .setSource(coinCode)
+            .setTarget(fiatCode)
             .get()
     }
 

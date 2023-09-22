@@ -108,7 +108,7 @@ describe('banxa test', function () {
             .get('/api/payment-methods?source=BTC&target=AUD')
             .reply(200, PaymentMethodsResponse.get())
         const resp = await Banxa.create('SUBDOMAIN', 'API', 'SECRET', true)
-            .getSellPaymentMethods('AUD', 'BTC');
+            .getSellPaymentMethods('BTC', 'AUD');
         assert.equal(Array.isArray(resp), true);
     });
 
