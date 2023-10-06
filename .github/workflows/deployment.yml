@@ -2,20 +2,10 @@ name: Test and Publish NPM Package
 
 on:
   push:
-    branches:
-      - main
+    tags:
+      - v*.*.*
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      - run: npm install
-      - run: npm run test
-
   publish-gpr:
     runs-on: ubuntu-latest
     steps:
