@@ -450,7 +450,7 @@ combination. Should be called when a user requests prices by providing the crypt
 
 ### Buy order types pricing
 
-> **Fetch single available price for buy order type for a specific payment method**
+> **Fetch available price for buy order type for all payment method**
 >```js
 > banxa.getAllBuyPrices(
 >   fiatCode,
@@ -465,6 +465,23 @@ combination. Should be called when a user requests prices by providing the crypt
 | `fiatCode`   | `string`           | `true`   | Fiat code e.g. 'USD' or 'EUR' see [Fiat](#fiat) to get a list all available fiats                            |
 | `coinCode`   | `string`           | `true`   | Coin code e.g. 'BTC' or 'ETH' see [Crypto](#crypto) to get a list all available crypto                       |
 | `fiatAmount` | `string/number` | `true`   | Fiat amount                                                                                                  |
+| `blockchain` | `string`           | `false`  | Blockchain code e.g. 'ETH' or 'TRON' see [Crypto](#crypto) to get a list all available blockchains per coin. |
+
+> **Fetch available price for buy order type for all payment method with coin amount**
+>```js
+> banxa.getAllBuyPricesFromCoinAmount(
+>   fiatCode,
+>   coinCode,
+>   coinAmount,
+>   blockchain
+> )
+>```
+
+| Property      | description        | required | description                                                                                                  |
+|:--------------|:-------------------|:---------|:-------------------------------------------------------------------------------------------------------------|
+| `fiatCode`   | `string`           | `true`   | Fiat code e.g. 'USD' or 'EUR' see [Fiat](#fiat) to get a list all available fiats                            |
+| `coinCode`   | `string`           | `true`   | Coin code e.g. 'BTC' or 'ETH' see [Crypto](#crypto) to get a list all available crypto                       |
+| `coinAmount` | `string/number`    | `true`   | Coin amount                                                                                                  |
 | `blockchain` | `string`           | `false`  | Blockchain code e.g. 'ETH' or 'TRON' see [Crypto](#crypto) to get a list all available blockchains per coin. |
 
 **Result Example**
@@ -524,6 +541,25 @@ combination. Should be called when a user requests prices by providing the crypt
 | `payment_method_id` | `string/number` | `true`   | Unique ID for the payment method that you want to get prices for. see [Payment Methods](#payment-methods) to get a list of payment providers. |
 | `blockchain`        | `string`           | `false`  | Blockchain code e.g. 'ETH' or 'TRON' see [Crypto](#crypto) to get a list all available blockchains per coin.                                  |
 
+> **Fetch single price for buy order type for a specific payment method with coin amount**
+> ```js
+> banxa.getBuyPricesFromCoinAmount(
+>    fiatCode,
+>    coinCode,
+>    coinAmount,
+>    paymentMethodId,
+>    blockchain
+> )
+>```
+
+| Property             | type               | required | required                                                                                                                                      |
+|:---------------------|:-------------------|:---------|:----------------------------------------------------------------------------------------------------------------------------------------------|
+| `fiatCode`          | `string`           | `true`   | Fiat code e.g. 'USD' or 'EUR see [Fiat](#fiat) to get a list all available fiats                                                              |
+| `coinCode`          | `string`           | `true`   | Coin code e.g. 'BTC' or 'ETH see [Crypto](#crypto) to get a list all available crypto                                                         |
+| `coinAmount`        | `string/number` | `true`   | Coin amount                                                                                                                                   |
+| `payment_method_id` | `string/number` | `true`   | Unique ID for the payment method that you want to get prices for. see [Payment Methods](#payment-methods) to get a list of payment providers. |
+| `blockchain`        | `string`           | `false`  | Blockchain code e.g. 'ETH' or 'TRON' see [Crypto](#crypto) to get a list all available blockchains per coin.    
+
 **Result Example**
 
 ```json
@@ -557,6 +593,21 @@ combination. Should be called when a user requests prices by providing the crypt
 | `coinCode`   | `string`           | `true`   | Coin code e.g. 'BTC' or 'ETH' see [Crypto](#crypto) to get a list all available crypto |
 | `fiatCode`   | `string`           | `true`   | Fiat code e.g. 'USD' or 'EUR' see [Fiat](#fiat) to get a list all available fiats      |
 | `coinAmount` | `string/number` | `true`   | Crypto amount that will be used to calculate the fiat amount                           |
+
+> **Fetch all available prices for sell order type with fiat amount**
+> ```js
+> banxa.getAllSellPricesFromFiatAmount(
+>   coinCode, 
+>   fiatCode, 
+>   fiatAmount
+> )
+> ```
+
+| Property      | type               | required | description                                                                            |
+|:--------------|:-------------------|:---------|:---------------------------------------------------------------------------------------|
+| `coinCode`   | `string`           | `true`   | Coin code e.g. 'BTC' or 'ETH' see [Crypto](#crypto) to get a list all available crypto |
+| `fiatCode`   | `string`           | `true`   | Fiat code e.g. 'USD' or 'EUR' see [Fiat](#fiat) to get a list all available fiats      |
+| `fiatAmount` | `string/number` | `true`   | Fiat amount that will be used to calculate the coin amount                           |
 
 **Result Example**
 
@@ -609,6 +660,23 @@ combination. Should be called when a user requests prices by providing the crypt
 | `coinCode`          | `string`        | `true`   | Coin code e.g. 'BTC' or 'ETH' see [Crypto](#crypto) to get a list all available crypto                                                        |
 | `fiatCode`          | `string`        | `true`   | Fiat code e.g. 'USD' or 'EUR' see [Fiat](#fiat) to get a list all available fiats                                                             |
 | `coinAmount`        | `string/number` | `true`   | Crypto amount that will be used to calculate                                                                                                  |
+| `payment_method_id` | `string/number` | `true`   | Unique ID for the payment method that you want to get prices for. see [Payment Methods](#payment-methods) to get a list of payment providers. |
+
+> **Fetch single price for buy order type for a specific payment method with fiat amount**
+> ```js
+> banxa.getSellPricesFromFiatAmount(
+>   coinCode, 
+>   fiatCode, 
+>   fiatAmount, 
+>   paymentMethodId
+> )
+>```
+
+| Property             | type            | required | description                                                                                                                                   |
+|:---------------------|:----------------|:---------|:----------------------------------------------------------------------------------------------------------------------------------------------|
+| `coinCode`          | `string`        | `true`   | Coin code e.g. 'BTC' or 'ETH' see [Crypto](#crypto) to get a list all available crypto                                                        |
+| `fiatCode`          | `string`        | `true`   | Fiat code e.g. 'USD' or 'EUR' see [Fiat](#fiat) to get a list all available fiats                                                             |
+| `fiatAmount`        | `string/number` | `true`   | Fiat amount that will be used to calculate                                                                                                  |
 | `payment_method_id` | `string/number` | `true`   | Unique ID for the payment method that you want to get prices for. see [Payment Methods](#payment-methods) to get a list of payment providers. |
 
 **Result Example**
