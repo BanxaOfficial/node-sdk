@@ -72,8 +72,8 @@ export default class Banxa {
 
     public getSellPaymentMethods(coinCode: string, fiatCode: string) {
         return new GetPaymentMethods(this.httpClient)
-            .setTarget(coinCode)
-            .setSource(fiatCode)
+            .setSource(coinCode)
+            .setTarget(fiatCode)
             .get()
     }
 
@@ -82,6 +82,16 @@ export default class Banxa {
             .setSource(fiatCode)
             .setTarget(coinCode)
             .setSourceAmount(fiatAmount)
+            .setPaymentMethodId()
+            .setBlockchain(blockchain)
+            .get()
+    }
+
+    public getAllBuyPricesFromCoinAmount(fiatCode: string, coinCode: string, coinAmount: string | number, blockchain?: string) {
+        return new GetPrices(this.httpClient)
+            .setSource(fiatCode)
+            .setTarget(coinCode)
+            .setTargetAmount(coinAmount)
             .setPaymentMethodId()
             .setBlockchain(blockchain)
             .get()
@@ -97,6 +107,16 @@ export default class Banxa {
             .get()
     }
 
+    public getBuyPricesFromCoinAmount(fiatCode: string, coinCode: string, coinAmount: string | number, paymentMethodId: string | number, blockchain?: string) {
+        return new GetPrices(this.httpClient)
+            .setSource(fiatCode)
+            .setTarget(coinCode)
+            .setTargetAmount(coinAmount)
+            .setPaymentMethodId(paymentMethodId)
+            .setBlockchain(blockchain)
+            .get()
+    }
+
     public getAllSellPrices(coinCode: string, fiatCode: string, coinAmount: string | number) {
         return new GetPrices(this.httpClient)
             .setSource(coinCode)
@@ -107,11 +127,31 @@ export default class Banxa {
             .get()
     }
 
+    public getAllSellPricesFromFiatAmount(coinCode: string, fiatCode: string, fiatAmount: string | number) {
+        return new GetPrices(this.httpClient)
+            .setSource(coinCode)
+            .setTarget(fiatCode)
+            .setTargetAmount(fiatAmount)
+            .setPaymentMethodId()
+            .setBlockchain()
+            .get()
+    }
+
     public getSellPrices(coinCode: string, fiatCode: string, coinAmount: string | number, paymentMethodId: string) {
         return new GetPrices(this.httpClient)
             .setSource(coinCode)
             .setTarget(fiatCode)
             .setSourceAmount(coinAmount)
+            .setPaymentMethodId(paymentMethodId)
+            .setBlockchain()
+            .get()
+    }
+
+    public getSellPricesFromFiatAmount(coinCode: string, fiatCode: string, fiatAmount: string | number, paymentMethodId: string) {
+        return new GetPrices(this.httpClient)
+            .setSource(coinCode)
+            .setTarget(fiatCode)
+            .setTargetAmount(fiatAmount)
             .setPaymentMethodId(paymentMethodId)
             .setBlockchain()
             .get()

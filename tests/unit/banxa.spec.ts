@@ -108,7 +108,7 @@ describe('banxa test', function () {
             .get('/api/payment-methods?source=BTC&target=AUD')
             .reply(200, PaymentMethodsResponse.get())
         const resp = await Banxa.create('SUBDOMAIN', 'API', 'SECRET', true)
-            .getSellPaymentMethods('AUD', 'BTC');
+            .getSellPaymentMethods('BTC', 'AUD');
         assert.equal(Array.isArray(resp), true);
     });
 
@@ -121,12 +121,30 @@ describe('banxa test', function () {
         assert.equal(Array.isArray(resp), true);
     });
 
+    it('can getAllBuyPrices from coin amount', async function () {
+        nock('https://subdomain.banxa-sandbox.com', {"encodedQueryParams": true})
+            .get('/api/prices?source=AUD&target=BTC&target_amount=1.0123&blockchain=BTC')
+            .reply(200, PricesResponse.get())
+        const resp = await Banxa.create('SUBDOMAIN', 'API', 'SECRET', true)
+            .getAllBuyPricesFromCoinAmount('AUD', 'BTC', '1.0123', 'BTC');
+        assert.equal(Array.isArray(resp), true);
+    });
+
     it('can getBuyPrices', async function () {
         nock('https://subdomain.banxa-sandbox.com', {"encodedQueryParams": true})
             .get('/api/prices?source=AUD&target=BTC&source_amount=100.25&payment_method_id=101&blockchain=BTC')
             .reply(200, PricesResponse.get())
         const resp = await Banxa.create('SUBDOMAIN', 'API', 'SECRET', true)
             .getBuyPrices('AUD', 'BTC', '100.25', 101, 'BTC');
+        assert.equal(Array.isArray(resp), true);
+    });
+
+    it('can getBuyPrices from coin amount', async function () {
+        nock('https://subdomain.banxa-sandbox.com', {"encodedQueryParams": true})
+            .get('/api/prices?source=AUD&target=BTC&target_amount=1.0123&payment_method_id=101&blockchain=BTC')
+            .reply(200, PricesResponse.get())
+        const resp = await Banxa.create('SUBDOMAIN', 'API', 'SECRET', true)
+            .getBuyPricesFromCoinAmount('AUD', 'BTC', '1.0123', 101, 'BTC');
         assert.equal(Array.isArray(resp), true);
     });
 
@@ -139,12 +157,30 @@ describe('banxa test', function () {
         assert.equal(Array.isArray(resp), true);
     });
 
+    it('can getAllSellPrices from fiat amount', async function () {
+        nock('https://subdomain.banxa-sandbox.com', {"encodedQueryParams": true})
+            .get('/api/prices?source=BTC&target=AUD&target_amount=300.5')
+            .reply(200, PricesResponse.get())
+        const resp = await Banxa.create('SUBDOMAIN', 'API', 'SECRET', true)
+            .getAllSellPricesFromFiatAmount('BTC', 'AUD', '300.5');
+        assert.equal(Array.isArray(resp), true);
+    });
+
     it('can getSellPrices', async function () {
         nock('https://subdomain.banxa-sandbox.com', {"encodedQueryParams": true})
             .get('/api/prices?source=BTC&target=AUD&source_amount=100.25&payment_method_id=2102')
             .reply(200, PricesResponse.get())
         const resp = await Banxa.create('SUBDOMAIN', 'API', 'SECRET', true)
             .getSellPrices('BTC', 'AUD', '100.25', '2102');
+        assert.equal(Array.isArray(resp), true);
+    });
+
+    it('can getSellPrices from fiat amount', async function () {
+        nock('https://subdomain.banxa-sandbox.com', {"encodedQueryParams": true})
+            .get('/api/prices?source=BTC&target=AUD&target_amount=300.5&payment_method_id=2102')
+            .reply(200, PricesResponse.get())
+        const resp = await Banxa.create('SUBDOMAIN', 'API', 'SECRET', true)
+            .getSellPricesFromFiatAmount('BTC', 'AUD', '300.5', '2102');
         assert.equal(Array.isArray(resp), true);
     });
 
@@ -229,7 +265,7 @@ describe('banxa test', function () {
 
     it('can getOrder', async function () {
         nock('https://subdomain.banxa-sandbox.com', {"encodedQueryParams": true})
-            .get('/api/order/84cecea94e3b8c08386623e46503aebc')
+            .get('/api/orders/84cecea94e3b8c08386623e46503aebc')
             .reply(200, OrderResponse.getOrder())
         const resp = await Banxa.create('SUBDOMAIN', 'API', 'SECRET', true)
             .getOrder('84cecea94e3b8c08386623e46503aebc');
