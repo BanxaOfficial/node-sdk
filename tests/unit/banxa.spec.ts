@@ -108,7 +108,7 @@ describe('banxa test', function () {
             .get('/api/payment-methods?source=BTC&target=AUD')
             .reply(200, PaymentMethodsResponse.get())
         const resp = await Banxa.create('SUBDOMAIN', 'API', 'SECRET', true)
-            .getSellPaymentMethods('AUD', 'BTC');
+            .getSellPaymentMethods('BTC', 'AUD');
         assert.equal(Array.isArray(resp), true);
     });
 
@@ -229,7 +229,7 @@ describe('banxa test', function () {
 
     it('can getOrder', async function () {
         nock('https://subdomain.banxa-sandbox.com', {"encodedQueryParams": true})
-            .get('/api/order/84cecea94e3b8c08386623e46503aebc')
+            .get('/api/orders/84cecea94e3b8c08386623e46503aebc')
             .reply(200, OrderResponse.getOrder())
         const resp = await Banxa.create('SUBDOMAIN', 'API', 'SECRET', true)
             .getOrder('84cecea94e3b8c08386623e46503aebc');
