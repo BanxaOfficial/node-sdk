@@ -6,6 +6,7 @@ export class GetPrices extends Domain {
     private _source: string = '';
     private _target: string = '';
     private _source_amount?: string | number;
+    private _target_amount?: string | number;
     private _payment_method_id? : string | number;
     private _blockchain?: string;
     private path = 'api/prices';
@@ -26,6 +27,7 @@ export class GetPrices extends Domain {
             [keyConstants._SOURCE] : this.source,
             [keyConstants._TARGET] : this.target,
             [keyConstants._SOURCE_AMOUNT] : this.sourceAmount,
+            [keyConstants._TARGET_AMOUNT] : this.targetAmount,
             [keyConstants._PAYMENT_METHOD_ID] : this.paymentMethodId,
             [keyConstants._BLOCKCHAIN] : this.blockchain,
         }
@@ -65,6 +67,15 @@ export class GetPrices extends Domain {
 
     public setSourceAmount(source_amount: string | number) {
         this._source_amount = source_amount?.toString();
+        return this;
+    }
+
+    private get targetAmount(): string | undefined {
+        return this._target_amount?.toString();
+    }
+
+    public setTargetAmount(target_amount: string | number) {
+        this._target_amount = target_amount?.toString();
         return this;
     }
 
