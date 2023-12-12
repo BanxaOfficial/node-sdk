@@ -20,12 +20,12 @@ export class GetCryptoCurrencies extends Domain {
     }
 
     public setBuyMode() {
-        this.mode = this.SELL_MODE;
+        this.mode = this.BUY_MODE;
         return this;
     }
 
     public setSellMode() {
-        this.mode = this.BUY_MODE;
+        this.mode = this.SELL_MODE;
         return this;
     }
 }
