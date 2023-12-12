@@ -51,7 +51,7 @@ describe('banxa test', function () {
 
     it('can getBuyCryptoCurrencies', async function () {
         nock('https://subdomain.banxa-sandbox.com', {"encodedQueryParams": true})
-            .get('/api/coins/sell')
+            .get('/api/coins/buy')
             .reply(200, CryptoCurrencyResponse.get())
         const resp = await Banxa.create('SUBDOMAIN', 'API', 'SECRET', true)
             .getBuyCryptoCurrencies();
@@ -60,7 +60,7 @@ describe('banxa test', function () {
 
     it('can getSellCryptoCurrencies', async function () {
         nock('https://subdomain.banxa-sandbox.com', {"encodedQueryParams": true})
-            .get('/api/coins/buy')
+            .get('/api/coins/sell')
             .reply(200, CryptoCurrencyResponse.get())
         const resp = await Banxa.create('SUBDOMAIN', 'API', 'SECRET', true)
             .getSellCryptoCurrencies();
